@@ -49,7 +49,7 @@ public class Employee {
 
     private void checkLength(String namePart) throws FieldLengthLimitException {
         if (namePart != null && namePart.length() > MAX_CHARACTERS) {
-            throw new FieldLengthLimitException("Too many characters in \"" + namePart +  "\". Length of name/surname field must be <10");
+            throw new FieldLengthLimitException("Too many characters in \"" + namePart +  "\". Length of name/surname field must be <" + MAX_CHARACTERS);
         }
     }
 
