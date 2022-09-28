@@ -6,7 +6,7 @@ public class Employee {
     protected int ID;
     protected int managerID;
     private static int nextId = 1;
-    private static final int MAX_CHARACTERS = 10;
+    private static final int MAX_CHARACTERS = 15;
 
 
     public Employee(String name, String surname, String departmentName, double salary, int managerID) throws FieldLengthLimitException, IncorrectSalaryException {
@@ -22,10 +22,10 @@ public class Employee {
         nextId++;
     }
 
-    public void printEmployee(){
-        System.out.printf("Name: %s, Surname: %s, Department: %s, Salary: %f, ID: %d, ManagerID: %d\n", name, surname, departmentName, salary, ID, managerID);
+    @Override
+    public String toString(){
+        return "Name: " + name + ", Surname: " + surname + ", Department: " + departmentName + ", Salary:" + salary + ", ID: " + ID + ", ManagerID: " + managerID;
     }
-
     private void checkLength(String namePart) throws FieldLengthLimitException {
         if (namePart != null && namePart.length() > MAX_CHARACTERS) {
             throw new FieldLengthLimitException("Too many characters in \"" + namePart +  "\". Length of name/surname field must be <" + MAX_CHARACTERS);
@@ -36,6 +36,32 @@ public class Employee {
         if (salary < 0.0) {
             throw new IncorrectSalaryException("Negative value for salary. Value = " + salary);
         }
+    }
+    public boolean equalToEmployee(Employee employee){
+        return employee != null && name.equals(employee.getName()) && surname.equals(employee.getSurname()) && departmentName.equals(employee.departmentName) && Double.compare(salary, employee.getSalary()) == 0;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getManagerID() {
+        return managerID;
     }
 
 }

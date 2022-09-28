@@ -10,8 +10,7 @@ public class Manager extends Employee{
         return bonus;
     }
 
-    @Override
-    public void printEmployee(){
-        System.out.printf("Name: %s, Surname: %s, Department: %s, Salary: %f, ID: %d, ManagerID: %d, Bonus: %f\n", name, surname, departmentName, salary, ID, managerID, bonus);
+    public String toString(){
+        return super.toString() + ", Bonus: " + bonus;
     }
 }

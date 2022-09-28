@@ -9,12 +9,17 @@ public class Registry {
         }
         return instance;
     }
-    public void addWorker(Employee employee){
+    public void addWorker(Employee employee) throws EmployeeInRegistryException {
+        for (Employee emp: workers) {
+            if(emp.equalToEmployee(employee)){
+                throw new EmployeeInRegistryException("Employee is already present in registry::: " + emp.toString());
+            }
+        }
         workers.add(employee);
     }
     public void toStringList(){
         for (Employee emp: workers) {
-            emp.printEmployee();
+            System.out.println(emp.toString());
         }
     }
 }
