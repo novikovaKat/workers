@@ -1,19 +1,29 @@
 public class Employee {
-    private int id;
-    private String name;
-    private String surname;
-    private double salary;
+    protected String name;
+    protected String surname;
+    protected String departmentName;
+    protected double salary;
+    protected int ID;
+    protected int managerID;
     private static int nextId = 1;
     private static final int MAX_CHARACTERS = 10;
 
-    public Employee(String name, String surname, double salary) throws FieldLengthLimitException, IncorrectSalaryException {
-        this.checkLength(name);
+
+    public Employee(String name, String surname, String departmentName, double salary, int managerID) throws FieldLengthLimitException, IncorrectSalaryException {
+        checkLength(name);
         this.name = name;
-        this.checkLength(surname);
+        checkLength(surname);
         this.surname = surname;
-        this.checkSalary(salary);
+        this.departmentName = departmentName;
+        checkSalary(salary);
         this.salary = salary;
-        this.id = nextId++;
+        this.managerID = managerID;
+        this.ID = nextId;
+        nextId++;
+    }
+
+    public void printEmployee(){
+        System.out.printf("Name: %s, Surname: %s, Department: %s, Salary: %f, ID: %d, ManagerID: %d\n", name, surname, departmentName, salary, ID, managerID);
     }
 
     private void checkLength(String namePart) throws FieldLengthLimitException {
@@ -27,4 +37,5 @@ public class Employee {
             throw new IncorrectSalaryException("Negative value for salary. Value = " + salary);
         }
     }
+
 }
