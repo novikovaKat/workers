@@ -63,16 +63,17 @@ public class Employee {
     public String toString() {
         return getClass().toString() + "::: Name: " + name + ", Surname: " + surname + ", Department: " + departmentName + ", Salary:" + salary + ", ID: " + ID + ", ManagerID: " + managerID;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return Double.compare(employee.salary, salary) == 0 && ID == employee.ID && managerID == employee.managerID && name.equals(employee.name) && surname.equals(employee.surname) && departmentName.equals(employee.departmentName);
+        return name.equals(employee.name) && surname.equals(employee.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, departmentName, salary, ID, managerID);
+        return Objects.hash(name, surname);
     }
 }
