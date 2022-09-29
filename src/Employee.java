@@ -61,7 +61,7 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return "Name: " + name + ", Surname: " + surname + ", Department: " + departmentName + ", Salary:" + salary + ", ID: " + ID + ", ManagerID: " + managerID;
+        return getClass().toString() + "::: Name: " + name + ", Surname: " + surname + ", Department: " + departmentName + ", Salary:" + salary + ", ID: " + ID + ", ManagerID: " + managerID;
     }
     @Override
     public boolean equals(Object o) {
