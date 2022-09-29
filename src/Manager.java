@@ -9,7 +9,7 @@ public class Manager extends Employee{
     public double getBonus() {
         return bonus;
     }
-
+    @Override
     public String toString(){
         return super.toString() + ", Bonus: " + bonus;
     }

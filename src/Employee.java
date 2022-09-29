@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Employee {
     protected String name;
     protected String surname;
@@ -22,13 +24,9 @@ public class Employee {
         nextId++;
     }
 
-    @Override
-    public String toString(){
-        return "Name: " + name + ", Surname: " + surname + ", Department: " + departmentName + ", Salary:" + salary + ", ID: " + ID + ", ManagerID: " + managerID;
-    }
     private void checkLength(String namePart) throws FieldLengthLimitException {
         if (namePart != null && namePart.length() > MAX_CHARACTERS) {
-            throw new FieldLengthLimitException("Too many characters in \"" + namePart +  "\". Length of name/surname field must be <" + MAX_CHARACTERS);
+            throw new FieldLengthLimitException("Too many characters in \"" + namePart + "\". Length of name/surname field must be <" + MAX_CHARACTERS);
         }
     }
 
@@ -37,9 +35,7 @@ public class Employee {
             throw new IncorrectSalaryException("Negative value for salary. Value = " + salary);
         }
     }
-    public boolean equalToEmployee(Employee employee){
-        return employee != null && name.equals(employee.getName()) && surname.equals(employee.getSurname()) && departmentName.equals(employee.departmentName) && Double.compare(salary, employee.getSalary()) == 0;
-    }
+
     public String getName() {
         return name;
     }
@@ -63,5 +59,20 @@ public class Employee {
     public int getManagerID() {
         return managerID;
     }
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Surname: " + surname + ", Department: " + departmentName + ", Salary:" + salary + ", ID: " + ID + ", ManagerID: " + managerID;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return Double.compare(employee.salary, salary) == 0 && ID == employee.ID && managerID == employee.managerID && name.equals(employee.name) && surname.equals(employee.surname) && departmentName.equals(employee.departmentName);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, departmentName, salary, ID, managerID);
+    }
 }

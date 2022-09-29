@@ -11,13 +11,13 @@ public class Registry {
     }
     public void addWorker(Employee employee) throws EmployeeInRegistryException {
         for (Employee emp: workers) {
-            if(emp.equalToEmployee(employee)){
+            if(emp.equals(employee)){
                 throw new EmployeeInRegistryException("Employee is already present in registry::: " + emp.toString());
             }
         }
         workers.add(employee);
     }
-    public void toStringList(){
+    public void printList(){
         for (Employee emp: workers) {
             System.out.println(emp.toString());
         }
