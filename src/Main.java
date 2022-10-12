@@ -1,23 +1,42 @@
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws EmployeeInRegistryException, IncorrectSalaryException, FieldLengthLimitException {
         Registry registry = Registry.getInstance();
-        try {
-            Employee emp1 = new Employee("Diana", "Koval", "Kyiv", 30000,3 );
-            Employee emp2 = new Employee("Sasha", "Brown", "Lviv", 25900, 3);
-            Employee emp3 = new Manager("Denis", "Korchynskyi", "Lviv", 32000, 3, 234);
-            Employee emp4 = new Employee("Sasha", "Brown", "Kyiv", 17900, 3);
 
+        Employee CEO = new Manager("Diana", "Koval", "Kyiv", 30000,0 , 3600);
+        Employee headMarketing = new Manager("Anna", "Brown", "Lviv", 25900, 0, 1740);
+        Employee headDeveloping = new Manager("Denis", "Korchynskyi", "Kyiv", 32000, 0, 2340);
+        Employee employee1 = new Employee("Kateryna", "Semenova", "Lviv", 17900, 1);
+        Employee employee2 = new Employee("Maryna", "Danilova", "Kyiv", 23000, 2);
+        Employee employee3 = new Employee("Stanislav", "Soroka", "Kyiv", 21000, 2);
+        Employee employee4 = new Employee("Roman", "Terletskyi", "Lviv", 18900, 1);
 
-            registry.addWorker(emp1);
-            registry.addWorker(emp2);
-            registry.addWorker(emp3);
-            //registry.addWorker(emp4);
+        registry.addWorker(CEO);
+        registry.addWorker(headMarketing);
+        registry.addWorker(headDeveloping);
+        registry.addWorker(employee1);
+        registry.addWorker(employee2);
+        registry.addWorker(employee3);
+        registry.addWorker(employee4);
 
-            registry.printList();
+       // registry.printList();
+
+        CEO.addSubordinates(headMarketing);
+        CEO.addSubordinates(headDeveloping);
+        headMarketing.addSubordinates(employee1);
+        headMarketing.addSubordinates(employee4);
+        headDeveloping.addSubordinates(employee2);
+        headDeveloping.addSubordinates(employee3);
+
+        System.out.println(CEO);
+
+        for (Employee subordinate : CEO.getSubordinates()) {
+            System.out.println(subordinate);
+
+            for (Employee employee : subordinate.getSubordinates()) {
+                System.out.println(employee);
+            }
         }
-        catch (FieldLengthLimitException | IncorrectSalaryException | EmployeeInRegistryException e){
-            System.out.println(e.getMessage());
-        }
+
 
     }
 }
